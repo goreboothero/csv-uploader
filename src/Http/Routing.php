@@ -6,9 +6,7 @@ namespace Goreboothero\CsvUploader\Http;
 
 /**
  * Interface Routing
- * @package Goreboothero\CsvUploader\Http
  */
 interface Routing
 {
-    //
 }

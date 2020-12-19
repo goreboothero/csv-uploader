@@ -6,7 +6,6 @@ namespace Goreboothero\CsvUploader\Exception;
 
 /**
  * Class LogicException
- * @package Goreboothero\CsvUploader\Exception
  */
 class LogicException extends \LogicException
 {

@@ -13,7 +13,6 @@ class CsvUploaderTest extends WebTestCase
 
     protected function setUp(): void
     {
-
     }
 
     public function testIsInstanceOfCsvUploader(): void

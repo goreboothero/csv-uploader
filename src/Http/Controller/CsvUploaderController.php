@@ -8,7 +8,6 @@ use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class CsvUploaderController
- * @package Goreboothero\CsvUploader\Http\Controller
  */
 final class CsvUploaderController
 {
