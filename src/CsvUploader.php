@@ -10,4 +10,7 @@ namespace Goreboothero\CsvUploader;
  */
 final class CsvUploader
 {
+    public function main()
+    {
+    }
 }

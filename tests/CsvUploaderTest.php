@@ -4,21 +4,22 @@ declare(strict_types=1);
 
 namespace Goreboothero\CsvUploader;
 
-use PHPUnit\Framework\TestCase;
+use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class CsvUploaderTest extends TestCase
+class CsvUploaderTest extends WebTestCase
 {
     /** @var CsvUploader */
     protected $csvUploader;
 
     protected function setUp(): void
     {
-        $this->csvUploader = new CsvUploader();
+
     }
 
     public function testIsInstanceOfCsvUploader(): void
     {
-        $actual = $this->csvUploader;
-        $this->assertInstanceOf(CsvUploader::class, $actual);
+        $client = static::createClient();
+        $client->request('GET', '/');
+        $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
 }
