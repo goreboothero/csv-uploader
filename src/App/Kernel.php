@@ -28,8 +28,7 @@ class Kernel extends BaseKernel
     protected function configureContainer(ContainerConfigurator $containerConfigurator): void
     {
         $containerConfigurator->extension('framework', [
-            'secret' => 'S0ME_SECRET',
-            'test' => true,
+            'test' => true
         ]);
     }
 
