@@ -1,0 +1,9 @@
+fos_http_cache:
+  cache_control:
+    defaults:
+      overwrite: false
+    rules:
+      # only match login.example.com
+      -
+        match:
+          host: ^log
