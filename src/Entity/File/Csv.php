@@ -14,8 +14,9 @@ class Csv
 {
     /**
      * @Assert\File(
-     *     mimeTypes={"text/csv"},
-     *     mimeTypesMessage="CSVファイルをアップロードしてください"
+     *     maxSize = "1024k",
+     *     mimeTypes = {"application/pdf", "application/x-pdf"},
+     *     mimeTypesMessage = "Please upload a valid PDF"
      * )
      */
     protected $csvFile;

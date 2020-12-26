@@ -7,8 +7,10 @@ namespace Goreboothero\CsvUploader\Http\Controller;
 use Goreboothero\CsvUploader\Entity\File\Csv;
 use Goreboothero\CsvUploader\Form\Type\CsvUploaderType;
 use Symfony\Component\Form\Extension\HttpFoundation\HttpFoundationExtension;
+use Symfony\Component\Form\Extension\Validator\ValidatorExtension;
 use Symfony\Component\Form\Forms;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Validator\Validation;
 
 use function dd;
 
@@ -19,8 +21,12 @@ class CsvUploaderController
 {
     public function index(Request $request): void
     {
+        $validatorBuilder = Validation::createValidatorBuilder();
+        $validatorBuilder->enableAnnotationMapping();
+        $validator = $validatorBuilder->getValidator();
+
         $formFactory = Forms::createFormFactoryBuilder()
-            ->addExtension(new HttpFoundationExtension())
+            ->addExtensions([new HttpFoundationExtension(), new ValidatorExtension($validator)])
             ->getFormFactory();
 
         $form = $formFactory
