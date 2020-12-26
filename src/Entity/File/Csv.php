@@ -20,13 +20,13 @@ class Csv
      */
     protected $csvFile;
 
-    public function setCsvFile(File $file): void
+    public function setCsvFile(File $file = null): void
     {
         $this->csvFile = $file;
     }
 
-    public function getCsvFile(): File
+    public function getCsvFile(): ?File
     {
-        return $this->name;
+        return $this->csvFile;
     }
 }
