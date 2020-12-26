@@ -28,7 +28,11 @@ class Kernel extends BaseKernel
     protected function configureContainer(ContainerConfigurator $containerConfigurator): void
     {
         $containerConfigurator->extension('framework', [
-            'test' => true
+            'test' => true,
+            'validation' => [
+                'enabled' => true,
+                'enable_annotations' => true,
+            ],
         ]);
     }
 
@@ -37,6 +41,6 @@ class Kernel extends BaseKernel
         $routingConfigurator
             ->add('csv_uploader_index', '/')
             ->controller([CsvUploaderController::class, 'index'])
-            ->methods(['GET']);
+            ->methods(['POST']);
     }
 }
