@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Goreboothero\CsvUploader\Entity\File;
 
 use Symfony\Component\HttpFoundation\File\File;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class Csv
@@ -21,8 +20,7 @@ class Csv
     // TODO: CSVをアップロードした際、text/plainになる問題があるため、text/csvでバリデートさせる https://polidog.jp/2018/07/19/symfony_validator/
     protected $csvFile;
 
-
-    public function setCsvFile(File $file = null): void
+    public function setCsvFile(?File $file = null): void
     {
         $this->csvFile = $file;
     }
