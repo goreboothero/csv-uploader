@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Goreboothero\CsvUploader\App;
+namespace Goreboothero\CsvUploader;
 
 use Goreboothero\CsvUploader\Http\Controller\CsvUploaderController;
 use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
