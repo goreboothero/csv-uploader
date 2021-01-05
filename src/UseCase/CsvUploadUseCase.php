@@ -17,6 +17,6 @@ class CsvUploadUseCase
         $csvFileToCsvCollectionConverter = new CsvFileToCsvCollectionConverter();
 
         $csvFile = $csv->getCsvFile();
-        $csvFileToCsvCollectionConverter->convert($csvFile);
+        $csvCollection = $csvFileToCsvCollectionConverter->convert($csvFile);
     }
 }

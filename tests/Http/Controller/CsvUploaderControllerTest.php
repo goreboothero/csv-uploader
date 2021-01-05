@@ -31,7 +31,7 @@ class CsvUploaderControllerTest extends WebTestCase
         $this->assertEquals(400, $client->getResponse()->getStatusCode());
     }
 
-    public function test_CSVをアップロードしなかったら、400が返ってくること(): void
+    public function test_CSVをアップロードしなかったら400が返ること(): void
     {
         $client = static::createClient();
         $client->request('POST', '/', [], []);
