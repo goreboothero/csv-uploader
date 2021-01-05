@@ -11,7 +11,7 @@ use function dirname;
 
 class CsvUploaderControllerTest extends WebTestCase
 {
-    public function test_CSVをアップロードした際、200が返ってくること(): void
+    public function test_CSVファイルがアップロードできること(): void
     {
         $csvFilePath = dirname(__FILE__) . '/../../TestFile/test_data_1.csv';
         $csvFile = new UploadedFile($csvFilePath, 'test_data_1.csv');
@@ -19,6 +19,16 @@ class CsvUploaderControllerTest extends WebTestCase
         $client = static::createClient();
         $client->request('POST', '/', [], ['csv_file' => $csvFile]);
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
+    }
+
+    public function test_TEXTファイルはアップロードできない(): void
+    {
+        $txtFilePath = dirname(__FILE__) . '/../../TestFile/dummy.txt';
+        $txtFile = new UploadedFile($txtFilePath, 'dummy.txt');
+
+        $client = static::createClient();
+        $client->request('POST', '/', [], ['csv_file' => $txtFile]);
+        $this->assertEquals(400, $client->getResponse()->getStatusCode());
     }
 
     public function test_CSVをアップロードしなかったら、400が返ってくること(): void
