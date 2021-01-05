@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Goreboothero\CsvUploader\DTO;
 
-class Csv
+class ExportUserListCsv
 {
     /** @var int */
     private $id;

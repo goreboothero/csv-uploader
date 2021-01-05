@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Goreboothero\CsvUploader\Converter;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Goreboothero\CsvUploader\DTO\Csv;
+use Goreboothero\CsvUploader\DTO\ExportUserListCsv;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 use function explode;
@@ -17,7 +17,7 @@ class CsvFileToCsvCollectionConverter implements ConverterInterface
 {
     /**
      * @param UploadedFile $csvFile
-     * @return ArrayCollection|Csv[]
+     * @return ArrayCollection|ExportUserListCsv[]
      */
     public function convert(UploadedFile $csvFile): ArrayCollection
     {
@@ -27,16 +27,16 @@ class CsvFileToCsvCollectionConverter implements ConverterInterface
         $csvContentAry = explode("\r\n", $csvContent);
 
         // TODO 命名を考え直す
-        $csvCollection = new ArrayCollection();
+        $exportUserListCsvCollection = new ArrayCollection();
         foreach ($csvContentAry as $key => $value) {
             if ($key === 0) {
                 continue;
             }
 
             $line = explode(',', $value);
-            $csvCollection->add(new Csv((int) $line[0], $line[1], $line[2]));
+            $exportUserListCsvCollection->add(new ExportUserListCsv((int) $line[0], $line[1], $line[2]));
         }
 
-        return $csvCollection;
+        return $exportUserListCsvCollection;
     }
 }

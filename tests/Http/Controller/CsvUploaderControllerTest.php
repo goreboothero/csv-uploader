@@ -13,8 +13,8 @@ class CsvUploaderControllerTest extends WebTestCase
 {
     public function test_CSVファイルがアップロードできること(): void
     {
-        $csvFilePath = dirname(__FILE__) . '/../../TestFile/test_data_1.csv';
-        $csvFile = new UploadedFile($csvFilePath, 'test_data_1.csv');
+        $csvFilePath = dirname(__FILE__) . '/../../TestFile/export_user_list_csv_test_data_1.csv';
+        $csvFile = new UploadedFile($csvFilePath, 'export_user_list_csv_test_data_1.csv');
 
         $client = static::createClient();
         $client->request('POST', '/', [], ['csv_file' => $csvFile]);

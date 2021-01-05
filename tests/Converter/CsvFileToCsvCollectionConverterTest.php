@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Goreboothero\CsvUploader\Converter;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Goreboothero\CsvUploader\DTO\Csv;
+use Goreboothero\CsvUploader\DTO\ExportUserListCsv;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
@@ -17,21 +17,21 @@ class CsvFileToCsvCollectionConverterTest extends TestCase
     {
         $SUT = $this->getSUT();
 
-        $csvFilePath = dirname(__FILE__) . '/../TestFile/test_data_1.csv';
-        $csvFile = new UploadedFile($csvFilePath, 'test_data_1.csv');
+        $csvFilePath = dirname(__FILE__) . '/../TestFile/export_user_list_csv_test_data_1.csv';
+        $csvFile = new UploadedFile($csvFilePath, 'export_user_list_csv_test_data_1.csv');
 
         $actual = $SUT->convert($csvFile);
 
         $this->assertInstanceOf(ArrayCollection::class, $actual);
-        $this->assertInstanceOf(Csv::class, $actual[0]);
+        $this->assertInstanceOf(ExportUserListCsv::class, $actual[0]);
 
-        $this->assertInstanceOf(Csv::class, $actual[0]);
-        $this->assertInstanceOf(Csv::class, $actual[1]);
-        $this->assertInstanceOf(Csv::class, $actual[2]);
-        $this->assertInstanceOf(Csv::class, $actual[3]);
+        $this->assertInstanceOf(ExportUserListCsv::class, $actual[0]);
+        $this->assertInstanceOf(ExportUserListCsv::class, $actual[1]);
+        $this->assertInstanceOf(ExportUserListCsv::class, $actual[2]);
+        $this->assertInstanceOf(ExportUserListCsv::class, $actual[3]);
 
         /**
-         * @var Csv $csv
+         * @var ExportUserListCsv $csv
          */
         $csv = $actual[0];
 
