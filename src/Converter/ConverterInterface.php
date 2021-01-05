@@ -8,5 +8,5 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 interface ConverterInterface
 {
-    public function convert(UploadedFile $uploadedFile);
+    public function convert(UploadedFile $uploadedFile): void;
 }

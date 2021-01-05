@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Goreboothero\CsvUploader\Converter;
 
-use Goreboothero\CsvUploader\DTO\Csv;
-use Goreboothero\CsvUploader\DTO\Factory\CsvHeaderFactory;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Doctrine\Common\Collections\ArrayCollection;
+use Goreboothero\CsvUploader\DTO\Csv;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+
+use function explode;
 
 /**
  * Class CsvFileToCsvCollectionConverter
- * @package Goreboothero\CsvUploader\Converter
  */
 class CsvFileToCsvCollectionConverter implements ConverterInterface
 {
@@ -28,13 +28,13 @@ class CsvFileToCsvCollectionConverter implements ConverterInterface
 
         // TODO 命名を考え直す
         $csvCollection = new ArrayCollection();
-        foreach($csvContentAry as $key => $value) {
-            if ($key == 0) {
+        foreach ($csvContentAry as $key => $value) {
+            if ($key === 0) {
                 continue;
             }
 
-            $line = explode(",", $value);
-            $csvCollection->add(new Csv((int)$line[0], $line[1], $line[2]));
+            $line = explode(',', $value);
+            $csvCollection->add(new Csv((int) $line[0], $line[1], $line[2]));
         }
 
         return $csvCollection;

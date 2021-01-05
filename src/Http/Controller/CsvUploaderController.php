@@ -11,19 +11,17 @@ use Symfony\Component\Form\Extension\HttpFoundation\HttpFoundationExtension;
 use Symfony\Component\Form\Extension\Validator\ValidatorExtension;
 use Symfony\Component\Form\Forms;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Validator\Validation;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Validator\Validation;
+
+use function assert;
 
 /**
  * Class CsvUploaderController
  */
 class CsvUploaderController
 {
-    /**
-     * @param Request $request
-     * @return Response
-     */
-    public function index(Request $request):Response
+    public function index(Request $request): Response
     {
         $validatorBuilder = Validation::createValidatorBuilder();
         $validatorBuilder->enableAnnotationMapping();
@@ -39,8 +37,8 @@ class CsvUploaderController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            /** @var Csv $csv */
             $csv = $form->getData();
+            assert($csv instanceof Csv);
 
             $csvUploadUseCase = new CsvUploadUseCase();
             $csvUploadUseCase->run($csv);

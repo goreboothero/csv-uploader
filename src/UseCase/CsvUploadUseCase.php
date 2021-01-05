@@ -9,14 +9,10 @@ use Goreboothero\CsvUploader\Entity\File\Csv;
 
 /**
  * Class CsvUploadUseCase
- * @package Goreboothero\CsvUploader\UseCase
  */
 class CsvUploadUseCase
 {
-    /**
-     * @param Csv $csv
-     */
-    public function run(Csv $csv)
+    public function run(Csv $csv): void
     {
         $csvFileToCsvCollectionConverter = new CsvFileToCsvCollectionConverter();
 

@@ -6,19 +6,13 @@ namespace Goreboothero\CsvUploader\DTO;
 
 class CsvHeader
 {
-    /**
-     * @var string
-     */
+    /** @var string */
     private $id;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $familyName;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $lastName;
 
     /**
@@ -34,25 +28,16 @@ class CsvHeader
         $this->lastName = $lastName;
     }
 
-    /**
-     * @return string
-     */
     public function getId(): string
     {
         return $this->id;
     }
 
-    /**
-     * @return string
-     */
     public function getFamilyName(): string
     {
         return $this->familyName;
     }
 
-    /**
-     * @return string
-     */
     public function getLastName(): string
     {
         return $this->lastName;
