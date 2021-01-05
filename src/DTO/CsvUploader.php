@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Goreboothero\CsvUploader\Entity\File;
+namespace Goreboothero\CsvUploader\DTO;
 
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
- * Class Csv
+ * Class CsvUploader
  */
-class Csv
+class CsvUploader
 {
     /**
      * Assert\File(

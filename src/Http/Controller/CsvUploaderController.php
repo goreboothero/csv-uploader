@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Goreboothero\CsvUploader\Http\Controller;
 
-use Goreboothero\CsvUploader\Entity\File\Csv;
+use Goreboothero\CsvUploader\DTO\CsvUploader;
 use Goreboothero\CsvUploader\Form\Type\CsvUploaderType;
 use Goreboothero\CsvUploader\UseCase\CsvUploadUseCase;
 use Symfony\Component\Form\Extension\HttpFoundation\HttpFoundationExtension;
@@ -32,16 +32,16 @@ class CsvUploaderController
             ->getFormFactory();
 
         $form = $formFactory
-            ->createNamedBuilder('', CsvUploaderType::class, new Csv())
+            ->createNamedBuilder('', CsvUploaderType::class, new CsvUploader())
             ->getForm();
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $csv = $form->getData();
-            assert($csv instanceof Csv);
+            $csvUploader = $form->getData();
+            assert($csvUploader instanceof CsvUploader);
 
             $csvUploadUseCase = new CsvUploadUseCase();
-            $csvUploadUseCase->run($csv);
+            $csvUploadUseCase->run($csvUploader);
 
             return new Response();
         }
