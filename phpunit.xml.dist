@@ -9,7 +9,7 @@
     </testsuites>
     <php>
         <ini name="error_reporting" value="-1" />
-        <server name="KERNEL_CLASS" value="Goreboothero\CsvUploader\App\Kernel"/>
+        <server name="KERNEL_CLASS" value="Goreboothero\CsvUploader\Kernel"/>
     </php>
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
