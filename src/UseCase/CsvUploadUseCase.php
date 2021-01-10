@@ -5,18 +5,16 @@ declare(strict_types=1);
 namespace Goreboothero\CsvUploader\UseCase;
 
 use Goreboothero\CsvUploader\Converter\CsvFileToCsvCollectionConverter;
-use Goreboothero\CsvUploader\DTO\CsvUploader;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * Class CsvUploadUseCase
  */
 class CsvUploadUseCase
 {
-    public function run(CsvUploader $csv): void
+    public function run(UploadedFile $csvFile): void
     {
         $csvFileToCsvCollectionConverter = new CsvFileToCsvCollectionConverter();
-
-        $csvFile = $csv->getCsvFile();
         $exportUserListCsvCollection = $csvFileToCsvCollectionConverter->convert($csvFile);
     }
 }

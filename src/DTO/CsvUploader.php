@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Goreboothero\CsvUploader\DTO;
 
+use Goreboothero\CsvUploader\Validator as CustomAssert;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class CsvUploader
@@ -12,10 +14,11 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 class CsvUploader
 {
     /**
-     * Assert\File(
+     * @Assert\File(
      *     mimeTypes = {"text/csv"},
      *     mimeTypesMessage = "CSVファイルをアップロードしてください。{{ type }} は非対応です。"
      * )
+     * @CustomAssert\FileContentTextCharset()
      */
     // TODO: CSVをアップロードした際、text/plainになる問題があるため、text/csvでバリデートさせる https://polidog.jp/2018/07/19/symfony_validator/
     protected $csvFile;
