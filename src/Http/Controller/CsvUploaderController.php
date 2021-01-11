@@ -15,7 +15,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Validator\Validation;
 
 use function assert;
-use function dd;
 
 /**
  * Class CsvUploaderController
@@ -46,8 +45,6 @@ class CsvUploaderController
 
             return new Response('', Response::HTTP_OK);
         }
-
-        dd((string) $form->getErrors(true, false));
 
         return new Response('', Response::HTTP_BAD_REQUEST);
     }
