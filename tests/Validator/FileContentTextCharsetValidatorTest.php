@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Goreboothero\CsvUploader\Validator;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 use Symfony\Component\Validator\Violation\ConstraintViolationBuilderInterface;
@@ -12,7 +12,7 @@ use Symfony\Component\Validator\Violation\ConstraintViolationBuilderInterface;
 use function dirname;
 use function mb_convert_encoding;
 
-class FileContentTextCharsetValidatorTest extends WebTestCase
+class FileContentTextCharsetValidatorTest extends TestCase
 {
     public function test_UTF8は許可(): void
     {
