@@ -1,4 +1,4 @@
-# goreboothero/spider-man
+# goreboothero/csv-uploader
 
 ## Installation
 
