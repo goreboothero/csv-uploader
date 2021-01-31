@@ -20,9 +20,7 @@ class Kernel extends BaseKernel
 
     public function registerBundles(): array
     {
-        return [
-            new FrameworkBundle(),
-        ];
+        return [new FrameworkBundle()];
     }
 
     protected function configureContainer(ContainerConfigurator $containerConfigurator): void
@@ -34,6 +32,20 @@ class Kernel extends BaseKernel
                 'enable_annotations' => true,
             ],
         ]);
+
+        $services = $containerConfigurator->services();
+
+        $services->defaults()
+            ->autowire()
+            ->autoconfigure();
+
+        $services
+            ->load('Goreboothero\CsvUploader\\', '../src/*')
+            ->exclude('../src/Form/{Form,UseCase,Validator,Kernel.php}');
+
+        $services
+            ->load('Goreboothero\CsvUploader\Http\Controller\\', '../src/http/Controller')
+            ->tag('controller.service_arguments');
     }
 
     protected function configureRoutes(RoutingConfigurator $routingConfigurator): void

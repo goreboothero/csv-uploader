@@ -14,13 +14,13 @@ use Symfony\Component\Validator\Constraints as Assert;
 class CsvUploader
 {
     /**
-     * @Assert\File(
+     * // TODO: CSVをアップロードした際、text/plainになる問題があるため、text/csvでバリデートさせる https://polidog.jp/2018/07/19/symfony_validator/
+     * Assert\File(
      *     mimeTypes = {"text/csv"},
      *     mimeTypesMessage = "CSVファイルをアップロードしてください。{{ type }} は非対応です。"
      * )
-     * @CustomAssert\FileContentTextCharset()
+     * CustomAssert\FileContentTextCharset()
      */
-    // TODO: CSVをアップロードした際、text/plainになる問題があるため、text/csvでバリデートさせる https://polidog.jp/2018/07/19/symfony_validator/
     protected $csvFile;
 
     public function setCsvFile(?UploadedFile $file = null): void

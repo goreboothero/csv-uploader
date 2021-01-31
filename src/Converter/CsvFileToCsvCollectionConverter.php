@@ -16,12 +16,12 @@ use function explode;
 class CsvFileToCsvCollectionConverter implements ConverterInterface
 {
     /**
-     * @param UploadedFile $csvFile
-     * @return ArrayCollection|ExportUserListCsv[]
+     * @param UploadedFile $uploadedFile
+     * @return ArrayCollection<int, ExportUserListCsv>
      */
-    public function convert(UploadedFile $csvFile): ArrayCollection
+    public function convert(UploadedFile $uploadedFile): ArrayCollection
     {
-        $csvContent = $csvFile->getContent();
+        $csvContent = $uploadedFile->getContent();
 
         // TODO 複数の改行コードに対応させる
         $csvContentAry = explode("\r\n", $csvContent);
