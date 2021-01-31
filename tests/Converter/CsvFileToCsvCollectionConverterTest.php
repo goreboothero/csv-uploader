@@ -9,6 +9,7 @@ use Goreboothero\CsvUploader\DTO\ExportUserListCsv;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
+use function assert;
 use function dirname;
 
 class CsvFileToCsvCollectionConverterTest extends TestCase
@@ -30,10 +31,8 @@ class CsvFileToCsvCollectionConverterTest extends TestCase
         $this->assertInstanceOf(ExportUserListCsv::class, $actual[2]);
         $this->assertInstanceOf(ExportUserListCsv::class, $actual[3]);
 
-        /**
-         * @var ExportUserListCsv $csv
-         */
         $csv = $actual[0];
+        assert($csv instanceof ExportUserListCsv);
 
         $this->assertEquals(1, $csv->getId(), 'CSV内で見出しを除いた1行目の内容が正しくオブジェクト化できていません');
         $this->assertEquals('山田', $csv->getFamilyName(), 'CSV内で見出しを除いた1行目の内容が正しくオブジェクト化できていません');

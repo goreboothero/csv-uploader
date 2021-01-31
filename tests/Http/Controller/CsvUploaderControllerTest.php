@@ -18,6 +18,7 @@ class CsvUploaderControllerTest extends WebTestCase
 
         $client = static::createClient();
         $client->request('POST', '/', [], ['csv_file' => $csvFile]);
+
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }
 

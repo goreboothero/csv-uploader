@@ -41,9 +41,9 @@ class CsvUploaderController
             assert($csvUploader instanceof CsvUploader);
 
             $csvUploadUseCase = new CsvUploadUseCase();
-            $csvUploadUseCase->run($csvUploader);
+            $csvUploadUseCase->run($csvUploader->getCsvFile());
 
-            return new Response();
+            return new Response('', Response::HTTP_OK);
         }
 
         return new Response('', Response::HTTP_BAD_REQUEST);
