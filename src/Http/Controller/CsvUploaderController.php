@@ -5,14 +5,11 @@ declare(strict_types=1);
 namespace Goreboothero\CsvUploader\Http\Controller;
 
 use Goreboothero\CsvUploader\DTO\CsvUploader;
+use Goreboothero\CsvUploader\Form\FormFactoryBuilder;
 use Goreboothero\CsvUploader\Form\Type\CsvUploaderType;
 use Goreboothero\CsvUploader\UseCase\CsvUploadUseCase;
-use Symfony\Component\Form\Extension\HttpFoundation\HttpFoundationExtension;
-use Symfony\Component\Form\Extension\Validator\ValidatorExtension;
-use Symfony\Component\Form\Forms;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Validator\Validation;
 
 use function assert;
 
@@ -21,15 +18,23 @@ use function assert;
  */
 class CsvUploaderController
 {
+    /**
+     * @var FormFactoryBuilder
+     */
+    private $formFactoryBuilder;
+
+    /**
+     * CsvUploaderController constructor.
+     * @param FormFactoryBuilder $formFactoryBuilder
+     */
+    public function __construct(FormFactoryBuilder $formFactoryBuilder)
+    {
+        $this->formFactoryBuilder = $formFactoryBuilder;
+    }
+
     public function index(Request $request): Response
     {
-        $validatorBuilder = Validation::createValidatorBuilder();
-        $validatorBuilder->enableAnnotationMapping();
-        $validator = $validatorBuilder->getValidator();
-
-        $formFactory = Forms::createFormFactoryBuilder()
-            ->addExtensions([new HttpFoundationExtension(), new ValidatorExtension($validator)])
-            ->getFormFactory();
+        $formFactory = $this->formFactoryBuilder->run();
 
         $form = $formFactory
             ->createNamedBuilder('', CsvUploaderType::class, new CsvUploader())
