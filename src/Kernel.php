@@ -41,13 +41,11 @@ class Kernel extends BaseKernel
 
         $services
             ->load('Goreboothero\CsvUploader\\', '../src/*')
-            ->exclude('../src/Form/{Form,UseCase,Validator,Kernel.php}')
-            ->autowire();
+            ->exclude('../src/Form/{Form,UseCase,Validator,Kernel.php}');
 
         $services
             ->load('Goreboothero\CsvUploader\Http\Controller\\', '../src/http/Controller')
-            ->tag('controller.service_arguments')
-            ->autowire();
+            ->tag('controller.service_arguments');
     }
 
     protected function configureRoutes(RoutingConfigurator $routingConfigurator): void

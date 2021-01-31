@@ -12,9 +12,20 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  */
 class CsvUploadUseCase
 {
+    /** @var CsvFileToCsvCollectionConverter */
+    private $csvFileToCsvCollectionConverter;
+
+    /**
+     * CsvUploadUseCase constructor.
+     * @param CsvFileToCsvCollectionConverter $csvFileToCsvCollectionConverter
+     */
+    public function __construct(CsvFileToCsvCollectionConverter $csvFileToCsvCollectionConverter)
+    {
+        $this->csvFileToCsvCollectionConverter = $csvFileToCsvCollectionConverter;
+    }
+
     public function run(UploadedFile $csvFile): void
     {
-        $csvFileToCsvCollectionConverter = new CsvFileToCsvCollectionConverter();
-        $exportUserListCsvCollection = $csvFileToCsvCollectionConverter->convert($csvFile);
+        $exportUserListCsvCollection = $this->csvFileToCsvCollectionConverter->convert($csvFile);
     }
 }

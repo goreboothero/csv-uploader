@@ -18,18 +18,21 @@ use function assert;
  */
 class CsvUploaderController
 {
-    /**
-     * @var FormFactoryBuilder
-     */
+    /** @var FormFactoryBuilder */
     private $formFactoryBuilder;
+
+    /** @var CsvUploadUseCase */
+    private $csvUploadUseCase;
 
     /**
      * CsvUploaderController constructor.
      * @param FormFactoryBuilder $formFactoryBuilder
+     * @param CsvUploadUseCase $csvUploadUseCase
      */
-    public function __construct(FormFactoryBuilder $formFactoryBuilder)
+    public function __construct(FormFactoryBuilder $formFactoryBuilder, CsvUploadUseCase $csvUploadUseCase)
     {
         $this->formFactoryBuilder = $formFactoryBuilder;
+        $this->csvUploadUseCase = $csvUploadUseCase;
     }
 
     public function index(Request $request): Response
@@ -45,8 +48,7 @@ class CsvUploaderController
             $csvUploader = $form->getData();
             assert($csvUploader instanceof CsvUploader);
 
-            $csvUploadUseCase = new CsvUploadUseCase();
-            $csvUploadUseCase->run($csvUploader->getCsvFile());
+            $this->csvUploadUseCase->run($csvUploader->getCsvFile());
 
             return new Response('', Response::HTTP_OK);
         }
