@@ -9,9 +9,9 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Class CsvUploader
+ * Class ExportUserListCsvUploaderForm
  */
-class CsvUploader
+class ExportUserListCsvUploaderForm
 {
     /**
      * // TODO: CSVをアップロードした際、text/plainになる問題があるため、text/csvでバリデートさせる https://polidog.jp/2018/07/19/symfony_validator/

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Goreboothero\CsvUploader\Http\Controller;
 
-use Goreboothero\CsvUploader\DTO\CsvUploader;
+use Goreboothero\CsvUploader\DTO\ExportUserListCsvUploaderForm;
 use Goreboothero\CsvUploader\Form\FormFactoryBuilder;
 use Goreboothero\CsvUploader\Form\Type\CsvUploaderType;
 use Goreboothero\CsvUploader\UseCase\CsvUploadUseCase;
@@ -40,15 +40,15 @@ class CsvUploaderController
         $formFactory = $this->formFactoryBuilder->run();
 
         $form = $formFactory
-            ->createNamedBuilder('', CsvUploaderType::class, new CsvUploader())
+            ->createNamedBuilder('', CsvUploaderType::class, new ExportUserListCsvUploaderForm())
             ->getForm();
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $csvUploader = $form->getData();
-            assert($csvUploader instanceof CsvUploader);
+            $exportUserListCsvUploaderForm = $form->getData();
+            assert($exportUserListCsvUploaderForm instanceof ExportUserListCsvUploaderForm);
 
-            $this->csvUploadUseCase->run($csvUploader->getCsvFile());
+            $this->csvUploadUseCase->run($exportUserListCsvUploaderForm->getCsvFile());
 
             return new Response('', Response::HTTP_OK);
         }
